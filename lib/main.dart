@@ -81,12 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (index == 0){
                         Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                        MaterialPageRoute(builder: (context) =>  RegisterScreen()),
                       );}
                       else {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const LogInScreen()),
+                          MaterialPageRoute(builder: (context) =>  LogInScreen()),
                         );
                       }
                     },

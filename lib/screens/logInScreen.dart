@@ -1,9 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:slash_2022/screens/registerScreen.dart';
 
-class LogInScreen extends StatelessWidget {
-  const LogInScreen ({super.key});
+class LogInScreen extends StatefulWidget {
+  LogInScreen ({super.key});
 
+  @override
+  State<LogInScreen> createState() => _LogInScreenState();
+}
+
+class _LogInScreenState extends State<LogInScreen> {
+
+
+  Future<void> _submit(String user, String pw) async {
+
+  }
+
+  final userController = TextEditingController();
+  final pwController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +55,7 @@ class LogInScreen extends StatelessWidget {
                 width: 300,
                 height: 45,
                 child: TextField(
+                  controller: userController,
                   textAlign: TextAlign.left,
                   textAlignVertical: TextAlignVertical.center,
                   keyboardType:
@@ -79,11 +94,11 @@ class LogInScreen extends StatelessWidget {
                 width: 300,
                 height: 45,
                 child: TextField(
+                  controller: pwController,
                   textAlign: TextAlign.left,
                   obscureText: true,
                   textAlignVertical: TextAlignVertical.center,
-                  keyboardType:
-                  TextInputType.emailAddress,
+                  keyboardType: TextInputType.emailAddress,
                   style: const TextStyle(fontSize: 20, color: Colors.grey),
                   decoration: InputDecoration(
                     hintText: "************",
@@ -105,15 +120,24 @@ class LogInScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 170,
             ),
             RichText(
               textAlign: TextAlign.left,
               text: TextSpan(
                 text: "Don’t have an account? Let’s register now.",
                 style: TextStyle(height: 4,fontSize: 12, color: Colors.grey),
-
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                    );
+                  },
               ),
+            ),
+            const SizedBox(
+              height: 5,
             ),
             Center(
               child: GestureDetector(
@@ -132,7 +156,9 @@ class LogInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  _submit(userController.text, pwController.text);
+                },
               ),
             ),
           ],
